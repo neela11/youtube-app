@@ -17,7 +17,7 @@ function getRequest(searchTerm){
   url = 'https://www.googleapis.com/youtube/v3/search';
 
   $.getJSON(url, params, function(data){
-    showResults(data);
+    showResults(data.items);
   });
 }
 
@@ -27,7 +27,11 @@ function showResults(results){
   $.each(results, function(index,value){
    
     // html +="SAndeep";
-    html += '<p>' + value.snippet.thumbnails.medium.url + '<br></p>';
+    html += '<img src="' + value.snippet.thumbnails.medium.url + '"/>';
+    html += '<h3>' + value.snippet.title + '<br></h3>';
+    html += '<hr>';
+    
+    html += '<p>' + value.snippet.description + '<br></p>';
     // html += '<p>' + value.kind + '<br></p>';
     // console.log(value.kind);
   });
